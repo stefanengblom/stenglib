@@ -10,3 +10,4 @@ cd ../Fast
 startup
 make
 
+cd ..
