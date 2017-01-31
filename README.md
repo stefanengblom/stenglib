@@ -1,5 +1,5 @@
 # stenglib
-Stefan Engblom's Matlab libraries
+Stefan Engblom's Matlab libraries - packages for daily use.
 
 ##Tensor##
 
@@ -14,8 +14,8 @@ notation a lot.
 
 * **tndims** Number of dimensions.
   (Depend: 0, status: stable)
-  [tndims.m](Tensor/tensor.m)
-  [tndims.c](Tensor/source/tensor.c)
+  [tndims.m](Tensor/tndims.m)
+  [tndims.c](Tensor/source/tndims.c)
 
 * **tsize** Size of array.
   (Depend: 0, status: stable)
@@ -27,8 +27,8 @@ notation a lot.
   [tsum.m](Tensor/tsum.m)
   [tsum.c](Tensor/source/tsum.c)
 
-* **tprod** Tensor product. Based on a concept by
-      D. Bertilsson, [COMSOL](http://www.comsol.com).
+* **tprod** Tensor product.
+  Based on a concept by D. Bertilsson, [COMSOL](http://www.comsol.com).
   (Depend: 0, status: stable)
   [tprod.m](Tensor/tprod.m)
   [tprod.c](Tensor/source/tprod.c)
@@ -58,8 +58,8 @@ scientific computing community.
 There is now a *parallel* **fsparse** version available. A
 paper describing the algorithm is *S. Engblom, D. Lukarski:
 Fast Matlab compatible sparse assembly on multicore computers*,
-in *Parallel Comput.* 56:1--17 (2016) [(doi)](http://dx.doi.org/10.1016/j.parco.2016.04.001). *Fact:*
-the **fsparse**-code has been selected as the base for the sparse assembly routines
+in *Parallel Comput.* 56:1--17 (2016) [(doi)](http://dx.doi.org/10.1016/j.parco.2016.04.001).
+*Fact:* the **fsparse**-code has been selected as the base for the sparse assembly routines
 in [PARALUTION](http://www.paralution.com).
 
 * **clenshaw** Evaluation of 3-term recurrences.
@@ -85,3 +85,37 @@ in [PARALUTION](http://www.paralution.com).
   [powerseries.c](Fast/source/powerseries.c)
 
 As before there is a [make.m](Fast/source/make.m) available which you will probably have to modify.
+
+##Scicomp##
+
+In **Scicomp** I've assembled some solvers from different areas within scientific computing: two solvers for
+nonlinear problems and an implementation of the Nelder-Mead simplex algorithm. I have also put three routines 
+for Gaussian quadratures with respect to discrete measures in this package.
+
+* **rtsafe** Scalar nonlinear solver.
+  (Depend: 0, status: stable)
+  [rtsafe.m](Scicomp/rtsafe.m)
+  
+* **ainsolve** Solver for large sets of nonlinear equations.
+  (Depend: 0, status: experimental)
+  [ainsolve.m](Scicomp/ainsolve.m)
+
+* **nmsimplex** Nelder-Meads simplex-algorithm.
+  (Depend: Fast/frepmat, Utils/parseopts, status: stable)
+  [nmsimplex.m](Scicomp/nmsimplex.m)
+
+* **ode1s** ODE-solver: split-step Euler method with digital control.
+  (Depend: Fast/{frepmat,fsetop}, Utils/{parseopts,report}, status: stable, but not finalized)
+  [ode1s.m](Scicomp/ode1s.m)
+
+* **gaussqd** Gaussian quadrature for discrete measures.
+  (Depend: Tensor/tprod, Fast/fsparse, status: stable)
+  [gaussqd.m](Scicomp/gaussqd.m)
+
+* **gausspd** Gaussian polynomial for discrete measures.
+  (Depend: Tensor/{tsum,tprod}, Fast/clenshaw, status: stable)
+  [gausspd.m](Scicomp/gausspd.m)
+  
+* **poch** Pochhammer's function.
+  (Depend: 0, status: stable)
+  [poch.m](Scicomp/poch.m)
