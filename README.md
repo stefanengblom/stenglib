@@ -215,3 +215,18 @@ perfect hash functions and removing files ending with a tilde (!).
 * **spym** Visualize magnitude of elements in matrix.
 (Depend: 0, status: this is a hack)
 [spym.m](Utils/spym.m)
+
+## Misc
+
+I'll put amusing routines in **Misc**. For now,
+this humble package contains a sudoku solver and a short function
+which I personally believe is the most beautiful Matlab-code ever
+written.
+
+* **sudsolve** Solve Sudoku puzzle.
+(Depend: 0, status: stable)
+[sudsolve.m](Misc/sudsolve.m)
+
+* **repeat** Repeat elements of vector.
+(Depend: 0, status: stable)
+[repeat.m](Misc/repeat.m)
