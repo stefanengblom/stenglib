@@ -27,6 +27,9 @@ download unless you agree to the above license.
 * Utils
 * Misc
 
+For contact details, see [stenglib.org](http://www.stenglib.org).
+I welcome bug reports and comments. Please *do not* send support requests.
+
 ##Tensor
 
 Originally, I made the **Tensor** package
@@ -145,3 +148,70 @@ for Gaussian quadratures with respect to discrete measures in this package.
 * **poch** Pochhammer's function.
   (Depend: 0, status: stable)
   [poch.m](Scicomp/poch.m)
+
+## Utils
+
+In the package **Utils** I've collected various
+routines for performing everyday tasks. Examples include
+generating LaTeX-arrays from matrices, .gif-animations, small
+perfect hash functions and removing files ending with a tilde (!).
+
+* **arr2latex** LaTeX-table from matrix.
+(Depend: Fast/frepmat, Utils/parseopts, status: stable)
+[arr2latex.m](Utils/arr2latex.m)
+
+* **assignopts** Assign options.
+(Depend: 0, status: stable)
+[assignopts.m](Utils/assignopts.m)
+
+* **parseopts** Parse options.
+(Depend: Fast/fsetop, status: stable)
+[parseopts.m](Utils/parseopts.m)
+
+* **matmerge** Merge .mat-files.
+(Depend: Fast/fsetop, Tensor/{tsize,tndims}, status: stable but kind of a hack)
+[matmerge.m](Utils/matmerge.m)
+
+* **consistency** Local truncation error of linear multistep method.
+(Depend: 0, status: stable)
+[consistency.m](Utils/consistency.m)
+
+* **stability** Plot of stability region for linear multistep method.
+(Depend: 0, status: stable)
+[stability.m](Utils/stability.m)
+
+* **perfecthash** Perfect hash-function from strings.
+(Depend: Tensor/tsum, Fast/fsparse, status: this is a hack, really)
+[perfecthash.m](Utils/perfecthash.m)
+
+* **movie2gif** Create GIF animation from MATLAB movie.
+(Depend: imwrite-function in Matlab, status: stable)
+[movie2gif.m](Utils/movie2gif.m)
+
+* **report** Report progress of solver.
+(Depend: 0, status: stable)
+[report.m](Utils/report.m)
+
+* **runtest** General test facility.
+(Depend: 0, status: stable)
+[runtest.m](Utils/runtest.m)
+
+* **rmtilde** Remove files ending with a tilde ('~').
+(Depend: 0, status: stable)
+[rmtilde.m](Utils/rmtilde.m)
+
+* **connect** Connectivity information for points.
+(Depend: 0, status: stable)
+[connect.m](Utils/connect.m)
+
+* **ndop** General N-dimensional operator.
+(Depend: Tensor/{tndims,tsum,tprod}, Fast/frepmat, status: stable)
+[ndop.m](Utils/ndop.m)
+
+* **spblock** Sparse matrix from blocks.
+(Depend: Fast/fsparse, status: stable)
+[spblock.m](Utils/spblock.m)
+
+* **spym** Visualize magnitude of elements in matrix.
+(Depend: 0, status: this is a hack)
+[spym.m](Utils/spym.m)
