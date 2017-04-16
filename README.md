@@ -1,7 +1,7 @@
 # stenglib
 Stefan Engblom's Matlab libraries - packages for daily use.
 
-##License statement for stenglib
+## License statement for stenglib
 
 You may download all of **stenglib** and
 use, modify and redistribute it in any way you like. A
@@ -18,7 +18,7 @@ and **no support** whatsoever is given.
 There are a lot of freeware available on the net. Do **not**
 download unless you agree to the above license.
 
-##About stenglib
+## About stenglib
 
 **stenglib** is loosely divided into 5 sub-packages, with few dependencies in between them:
 * Tensor
@@ -30,7 +30,7 @@ download unless you agree to the above license.
 For contact details, see [stenglib.org](http://www.stenglib.org).
 I welcome bug reports and comments. Please *do not* send support requests.
 
-##Tensor
+## Tensor
 
 Originally, I made the **Tensor** package
 because I had the need to easily, efficiently and consistently
@@ -65,7 +65,7 @@ notation a lot.
 There is also a [make.m](Tensor/source/make.m) available.
 It will work on several, but not all, platforms.
 
-##Fast
+## Fast
 
 The routines in the **Fast** package exist
 because some things just take too much time in Matlab. *Examples:*
@@ -115,7 +115,7 @@ in [PARALUTION](http://www.paralution.com).
 
 As before there is a [make.m](Fast/source/make.m) available which you will probably have to modify.
 
-##Scicomp
+## Scicomp
 
 In **Scicomp** I've assembled some solvers from different areas within scientific computing: two solvers for
 nonlinear problems and an implementation of the Nelder-Mead simplex algorithm. I have also put three routines 
