@@ -28,7 +28,7 @@ void dgemm_(const char *,const char *,
 	    const double *,double *,const int *);
 
 // forward declarations
-void checkix(const double *ix,mwSize len,mwSize *min,mwSize *max);
+void checkix(const double *ix,mwSize len,int *min,int *max);
 void sortix(const double *ix,mwSize len,int edg,int *in);
 void logicalsize(const mxArray *A,mwSize nda,mwSize *sizA);
 void permute(const mxArray *A,
@@ -59,7 +59,7 @@ void mexFunction(int nlhs,mxArray *plhs[],int nrhs,const mxArray *prhs[])
   const double *ib = mxGetPr(prhs[3])-1;
   const mwSize nda = mxGetNumberOfElements(prhs[2]);
   const mwSize ndb = mxGetNumberOfElements(prhs[3]);
-  mwSize min = 0,max = 0;
+  int min = 0,max = 0;
 
   // perform some checks and determine the span of the indices
   checkix(ia,nda,&min,&max);
@@ -227,7 +227,7 @@ void mexFunction(int nlhs,mxArray *plhs[],int nrhs,const mxArray *prhs[])
   mxDestroyArray(Cp);
 }
 /*-----------------------------------------------------------------------*/
-void checkix(const double *ix,mwSize len,mwSize *min,mwSize *max)
+void checkix(const double *ix,mwSize len,int *min,int *max)
 /* Checks the indices ix[1..len] and adjusts min and max
    accordingly. */
 {

@@ -8,7 +8,7 @@
 #include "matrix.h"
 
 /* forward declarations */
-void checkix(const double *ix,mwSize len,mwSize *max);
+void checkix(const double *ix,mwSize len,int *max);
 void sortix(const double *ix,mwSize len,int *in);
 void logicalsize(const mxArray *A,mwSize nda,mwSize *sizA);
 void permute(mxArray **Ap,const mxArray *A,
@@ -49,7 +49,7 @@ void mexFunction(int nlhs,mxArray *plhs[],int nrhs,const mxArray *prhs[])
     const double *ib = mxGetPr(prhs[3])-1;
     const mwSize nda = mxGetNumberOfElements(prhs[2]);
     const mwSize ndb = mxGetNumberOfElements(prhs[3]);
-    mwSize max = 0; /* the number of dimensions of the output */
+    int max = 0; /* the number of dimensions of the output */
 
     /* perform some checks and determine the span of the indices */
     checkix(ia,nda,&max); checkix(ib,ndb,&max);
@@ -265,7 +265,7 @@ void mexFunction(int nlhs,mxArray *plhs[],int nrhs,const mxArray *prhs[])
   }
 }
 /*-----------------------------------------------------------------------*/
-void checkix(const double *ix,mwSize len,mwSize *max)
+void checkix(const double *ix,mwSize len,int *max)
 /* Checks the indices ix[1..len] and adjusts max accordingly. */
 {
   for (int i = 1; i <= len; i++) {
