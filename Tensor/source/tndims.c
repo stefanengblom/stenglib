@@ -12,7 +12,7 @@ void mexFunction(int nlhs,mxArray *plhs[],int nrhs,const mxArray *prhs[])
     mexErrMsgIdAndTxt("tndims:e1","Expecting one input and one output.");
 
   /* input */
-  int ndimA = mxGetNumberOfDimensions(prhs[0]);
+  mwSize ndimA = mxGetNumberOfDimensions(prhs[0]);
 
   /* adjust */
   if (ndimA == 2)
