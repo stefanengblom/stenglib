@@ -15,8 +15,8 @@ void mexFunction(int nlhs,mxArray *plhs[],int nrhs,const mxArray *prhs[])
       "Expecting one or two inputs and one output.");
 
   /* input */
-  int ndimA = mxGetNumberOfDimensions(prhs[0]);
-  const int *sizA = mxGetDimensions(prhs[0]);
+  mwSize ndimA = mxGetNumberOfDimensions(prhs[0]);
+  const mwSize *sizA = mxGetDimensions(prhs[0]);
 
   /* adjust the number of dimensions */
   if (ndimA == 2)
@@ -37,7 +37,7 @@ void mexFunction(int nlhs,mxArray *plhs[],int nrhs,const mxArray *prhs[])
         "Dimension argument must be real, double and non-sparse.");
 
     /* input DIMS */
-    const int lenDIMS = mxGetNumberOfElements(prhs[1]);
+    const mwSize lenDIMS = mxGetNumberOfElements(prhs[1]);
     const double *prDIMS = mxGetPr(prhs[1]);
 
     /* check input DIMS */

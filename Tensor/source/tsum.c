@@ -8,14 +8,14 @@
 #include "matrix.h"
 
 /* forward declarations */
-void checkix(const double *ix,int len,int *max);
-void sortix(const double *ix,int len,int *in);
-void logicalsize(const mxArray *A,int nda,int *sizA);
+void checkix(const double *ix,mwSize len,mwSize *max);
+void sortix(const double *ix,mwSize len,int *in);
+void logicalsize(const mxArray *A,mwSize nda,mwSize *sizA);
 void permute(mxArray **Ap,const mxArray *A,
 	     const int *p1,const int *p2,int len);
 void sum(int dim,double *prB,double *piB,
 	 double *prA,double *piA,double **prC,double **piC,
-	 int ndims,int *siz,int *str);
+	 mwSize ndims,mwSize *siz,mwSize *str);
 
 #define MAX(a,b) ((a) >= (b) ? (a) : (b))
 
@@ -47,9 +47,9 @@ void mexFunction(int nlhs,mxArray *plhs[],int nrhs,const mxArray *prhs[])
     /* inputs IA and IB in *unit offset* */
     const double *ia = mxGetPr(prhs[2])-1;
     const double *ib = mxGetPr(prhs[3])-1;
-    const int nda = mxGetNumberOfElements(prhs[2]);
-    const int ndb = mxGetNumberOfElements(prhs[3]);
-    int max = 0; /* the number of dimensions of the output */
+    const mwSize nda = mxGetNumberOfElements(prhs[2]);
+    const mwSize ndb = mxGetNumberOfElements(prhs[3]);
+    mwSize max = 0; /* the number of dimensions of the output */
 
     /* perform some checks and determine the span of the indices */
     checkix(ia,nda,&max); checkix(ib,ndb,&max);
@@ -62,16 +62,16 @@ void mexFunction(int nlhs,mxArray *plhs[],int nrhs,const mxArray *prhs[])
        and ib (in *unit offset*) according to the absolute ordering. */
     int ina[max],inb[max];
 
-    sortix(ia,nda,memset(ina,0,max*sizeof(int)));
-    sortix(ib,ndb,memset(inb,0,max*sizeof(int)));
+    sortix(ia,nda,memset(ina,0,max*sizeof(ina[0])));
+    sortix(ib,ndb,memset(inb,0,max*sizeof(inb[0])));
 
     /* Set operations: the permutations contain indices pointing back
        into ia and ib in *unit offset* for the private parts (pa1 and
        pb1) and the common parts (pa2 and pb2). */
     int pa1[max+1],pa2[max+1],pb1[max+1],pb2[max+1];
 
-    memset(pa1,0,(max+1)*sizeof(int)); memset(pa2,0,(max+1)*sizeof(int));
-    memset(pb1,0,(max+1)*sizeof(int)); memset(pb2,0,(max+1)*sizeof(int));
+    memset(pa1,0,(max+1)*sizeof(pa1[0])); memset(pa2,0,(max+1)*sizeof(pa2[0]));
+    memset(pb1,0,(max+1)*sizeof(pb1[0])); memset(pb2,0,(max+1)*sizeof(pb2[0]));
     for (int i = 0,ia1 = 0,ib1 = 0,i2 = 0; i < max; i++) {
 
       /* a setdiff produces the private part */
@@ -89,7 +89,7 @@ void mexFunction(int nlhs,mxArray *plhs[],int nrhs,const mxArray *prhs[])
     }
 
     /* determine the logical size of the inputs A and B */
-    int sizA[nda],sizB[ndb];
+    mwSize sizA[nda],sizB[ndb];
     logicalsize(prhs[0],nda,sizA); logicalsize(prhs[1],ndb,sizB);
 
     /* permute to an order suitable for computations */
@@ -105,7 +105,7 @@ void mexFunction(int nlhs,mxArray *plhs[],int nrhs,const mxArray *prhs[])
        permuted by prhs2[1] in the end) */
     mxArray *prhs2[2];
     prhs2[1] = mxCreateDoubleMatrix(1,MAX(2,max),mxREAL);
-    int sizC[MAX(2,max)]; sizC[0] = sizC[1] = 1; /* singletons */
+    mwSize sizC[MAX(2,max)]; sizC[0] = sizC[1] = 1; /* singletons */
     int k = 1,m = 1,n = 1;
     {
       /* build the dimensions of C, including the sizes of the various
@@ -188,7 +188,7 @@ void mexFunction(int nlhs,mxArray *plhs[],int nrhs,const mxArray *prhs[])
 
     /* input IA */
     const double *ia = mxGetPr(prhs[1]);
-    const int nda = mxGetNumberOfElements(prhs[1]);
+    const mwSize nda = mxGetNumberOfElements(prhs[1]);
 
     for (int i = 0; i < nda; i++)
       if (ia[i] == 0.0 || ia[i] != ceil(ia[i]))
@@ -199,9 +199,9 @@ void mexFunction(int nlhs,mxArray *plhs[],int nrhs,const mxArray *prhs[])
       /* empty dimensions is special since the output might be larger
 	 than the input (a sum over an empty dimension produces a
 	 singleton dimension) */
-      const int ndimA = mxGetNumberOfDimensions(prhs[0]);
-      int sizA[ndimA];
-      memcpy(sizA,mxGetDimensions(prhs[0]),ndimA*sizeof(int));
+      const mwSize ndimA = mxGetNumberOfDimensions(prhs[0]);
+      mwSize sizA[ndimA];
+      memcpy(sizA,mxGetDimensions(prhs[0]),ndimA*sizeof(sizA[0]));
 
       for (int i = 0; i < nda; i++) {
 	const int dim = abs((int)ia[i]);
@@ -223,9 +223,9 @@ void mexFunction(int nlhs,mxArray *plhs[],int nrhs,const mxArray *prhs[])
     double *prB,*piB = NULL;
 
     /* dimensions and stride, to be updated */
-    const int ndimA = mxGetNumberOfDimensions(prhs[0]);
-    int sizA[ndimA],strA[ndimA+1];
-    memcpy(sizA,mxGetDimensions(prhs[0]),ndimA*sizeof(int));
+    const mwSize ndimA = mxGetNumberOfDimensions(prhs[0]);
+    mwSize sizA[ndimA],strA[ndimA+1];
+    memcpy(sizA,mxGetDimensions(prhs[0]),ndimA*sizeof(sizA[0]));
     strA[0] = 1;
     for (int i = 0; i < ndimA; i++) strA[i+1] = strA[i]*sizA[i];
 
@@ -265,7 +265,7 @@ void mexFunction(int nlhs,mxArray *plhs[],int nrhs,const mxArray *prhs[])
   }
 }
 /*-----------------------------------------------------------------------*/
-void checkix(const double *ix,int len,int *max)
+void checkix(const double *ix,mwSize len,mwSize *max)
 /* Checks the indices ix[1..len] and adjusts max accordingly. */
 {
   for (int i = 1; i <= len; i++) {
@@ -277,12 +277,12 @@ void checkix(const double *ix,int len,int *max)
   }
 }
 /*-----------------------------------------------------------------------*/
-void sortix(const double *ix,int len,int *in)
+void sortix(const double *ix,mwSize len,int *in)
 /* Sorts the indices ix[1..len] and determines a rank-table, in, which
    is assumed to be allocated and cleared prior to call. */
 {
   for (int i = 1; i <= len; i++) {
-    const int ii =  (int)ix[i]-1;
+    const int ii = (int)ix[i]-1;
 
     if (in[ii] != 0)
       mexErrMsgIdAndTxt("tsum:e6","Indices must be distinct.");
@@ -290,19 +290,19 @@ void sortix(const double *ix,int len,int *in)
   }
 }
 /*-----------------------------------------------------------------------*/
-void logicalsize(const mxArray *A,int nda,int *sizA)
+void logicalsize(const mxArray *A,mwSize nda,mwSize *sizA)
 /* Determines the size sizA of the array A. The sizes of all
    dimensions i, 1 <= i <= nda are included in sizA. */
 {
-  int ndimA = mxGetNumberOfDimensions(A);
-  const int *msizA = mxGetDimensions(A);
+  mwSize ndimA = mxGetNumberOfDimensions(A);
+  const mwSize *msizA = mxGetDimensions(A);
 
   /* mask for Matlab's stupid convention */
   if (ndimA == 2) ndimA -= (msizA[1] == 1)*(1+(msizA[0] == 1));
   if (nda < ndimA)
     mexErrMsgIdAndTxt("tsum:e7","Wrong size of index vector.");
 
-  memcpy(sizA,msizA,ndimA*sizeof(int));
+  memcpy(sizA,msizA,ndimA*sizeof(sizA[0]));
   for (int i = ndimA; i < nda; i++) sizA[i] = 1;
 }
 /*-----------------------------------------------------------------------*/
@@ -331,7 +331,7 @@ void permute(mxArray **Ap,const mxArray *A,
 /*-----------------------------------------------------------------------*/
 void sum(int dim,double *prB,double *piB,
 	 double *prA,double *piA,double **prC,double **piC,
-	 int ndims,int *siz,int *str)
+	 mwSize ndims,mwSize *siz,mwSize *str)
 /* Sums the array (prA,piA) along the dimension dim (dim must be
    nonzero and the corresponding dimension is not allowed to be of
    vanishing width). The resulting array is placed in (prB,piB) and
