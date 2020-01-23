@@ -1,6 +1,7 @@
 function make
 %MAKE Makefile for TENSOR.
 
+% S. Engblom 2019-01-23 (mexa64, 9.6)
 % S. Engblom 2015-03-20 (mexa64, 8.4)
 % S. Engblom 2015-01-19 (mexmaci64, 8.4)
 % S. Engblom 2012-04-16 (mexmaci64, 7.11)
@@ -85,9 +86,9 @@ elseif strcmp(mx,'mexa64')
           '-outdir',s,'-lmwblas',[s '/source/tprod.c']);
     end
   else
-    if ~strncmp(version,'8.4',3)
+    if ~strncmp(version,'8.4',3) && ~strncmp(version,'9.6',3)
       warning(['Extension .' mexext ' tested with Matlab version(s) ' ...
-               '8.4 only.']);
+               '8.4 and 9.6 only.']);
     end
       
     % apparently, the linker path is not properly set up on 8.4 (also a
