@@ -15,7 +15,7 @@ function make(varargin)
 %
 %   silent       Boolean {false}     Turns information display on/off.
 
-% S. Engblom 2019-01-23 (mexa64, 9.6)
+% S. Engblom 2019-01-23 (mexmaci64, mexa64, 9.6)
 % S. Engblom 2016-11-23 (spreplace)
 % S. Engblom 2015-03-23 (mexa64, 8.4)
 % S. Engblom 2015-01-19 (mexmaci64, 8.4)
@@ -173,9 +173,9 @@ if opts.fsparseonly
       end
     else
       if opts.openmp, warning('Compilation of OpenMP not (yet?) supported for this platform.'); end 
-      if ~strncmp(ver,'8.4',3)
+      if ~strncmp(ver,'8.4',3) && ~strncmp(version,'9.6',3)
         warning(['Extension .' mexext ' tested with Matlab version(s) ' ...
-		 '8.4 only.']);
+		 '8.4 and 9.6 only.']);
       end
       if opts.openmp
         % no harm in trying (await update of Clang?)
@@ -403,9 +403,9 @@ elseif strcmp(mx,'mexmaci64')
 	'CC=gcc -std=c99 -fast','-outdir',s,[s '/source/spreplace.c']);
   else
     if opts.openmp, warning('Compilation of OpenMP not (yet?) supported for this platform.'); end 
-    if ~strncmp(ver,'8.4',3)
+    if ~strncmp(ver,'8.4',3) && ~strncmp(version,'9.6',3)
       warning(['Extension .' mexext ' tested with Matlab version(s) ' ...
-               '8.4 only.']);
+               '8.4 and 9.6 only.']);
     end
     mex('CFLAGS=-Wno-parentheses -std=c99','-outdir',s,[s '/source/clenshaw.c']);
     mex('CFLAGS= -std=c99','-outdir',s,[s '/source/fsetop.c']);
