@@ -15,6 +15,7 @@ function make(varargin)
 %
 %   silent       Boolean {false}     Turns information display on/off.
 
+% S. Engblom 2019-01-23 (mexa64, 9.6)
 % S. Engblom 2016-11-23 (spreplace)
 % S. Engblom 2015-03-23 (mexa64, 8.4)
 % S. Engblom 2015-01-19 (mexmaci64, 8.4)
@@ -126,7 +127,7 @@ if opts.fsparseonly
             '-outdir',s,[s '/source/fsparse.c']);
       end
     else
-      if ~strncmp(ver,'8.4',3)
+      if ~strncmp(ver,'8.4',3) && ~strncmp(version,'9.6',3)
         warning(['Extension .' mexext ' tested with Matlab version(s) ' ...
                  '8.4 only.']);
       end
@@ -312,9 +313,9 @@ elseif strcmp(mx,'mexa64')
           '-outdir',s,[s '/source/spreplace.c']);
     end
   else
-    if ~strncmp(ver,'8.4',3)
+    if ~strncmp(ver,'8.4',3) && ~strncmp(version,'9.6',3)
       warning(['Extension .' mexext ' tested with Matlab version(s) ' ...
-               '8.4 only.']);
+               '8.4 and 9.6 only.']);
     end
     
     % apparently, the linker path is not properly set up on 8.4 (also a
