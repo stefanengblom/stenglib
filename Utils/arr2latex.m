@@ -126,7 +126,7 @@ S = ['\\begin{table}[' opts.pos ']\n' ...
 % column labels
 if ~isempty(opts.collabel)
   s = '\t';
-  for j = 1:size(T,2)
+  for j = 1:size(T,2)+(~isempty(opts.rowlabel))
     s = [s l_string(opts.collabel{j}) ' & '];
   end
   s(end-1:end) = '';
