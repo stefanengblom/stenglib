@@ -45,6 +45,9 @@ function S = arr2latex(T,fmt,varargin)
 %
 %   pos         String {'htp'}            The position of the table.
 %
+%   h2line      Integer {4}               Insert an extra \hline between
+%                                         major rows.
+%
 %   Examples:
 %     % a small table of the BesselJ-function
 %     A = [0 1:5; ...
@@ -82,6 +85,7 @@ if any(rep ~= ceil(rep))
 end
 fmt = frepmat(fmt,rep);
 
+
 % parse options
 opts = struct('collabel','', ...
               'rowlabel','', ...
@@ -94,6 +98,7 @@ opts = struct('collabel','', ...
               'centering','on', ...
               'colspec',['|' frepmat('c|',[1 size(T,2)])], ...
               'label','', ...
+              'h2line',[], ...
               'pos','htp');
 [opts,got] = parseopts(opts,varargin);
 if strcmpi(opts.hline,'on')
@@ -117,9 +122,12 @@ if ~isempty(opts.caption)
   opts.caption = ['\\caption{' l_string(opts.caption) '}\n'];
 end
 
+
 % the beginning...
 S = ['\\begin{table}[' opts.pos ']\n' ...
      opts.centering ...
+     opts.caption ...
+     opts.label ...
      '\\begin{tabular}{' opts.colspec '}\n' ...
      '\t\\hline\n'];
 
@@ -144,7 +152,7 @@ for i = 1:size(T,1)
   for j = 1:size(T,2)
     ss = l_format(fmt{i,j},T(i,j));
 
-    % signs for infinity and NaN's, if any -- try to keep the tabs 
+    % signs for infinity and NaN's, if any -- try to keep the tabs
     % of the table whenever possible
     if ~isempty(opts.posinf) && T(i,j) == Inf
       ss = [frepmat(' ',[1 max(size(ss,2)-size(opts.posinf,2),0)]) ...
@@ -165,6 +173,9 @@ for i = 1:size(T,1)
 
   % new row
   s = [s '\t\\\\\n' opts.hline];
+  if ~isempty(opts.h2line) && ~mod(i, opts.h2line) && i~=size(T,1)
+    s = [s '\t\\hline\n' opts.hline];
+  end
   S = [S s];
 end
 
@@ -174,8 +185,6 @@ if isempty(opts.hline), S = [S '\t\\hline\n']; end
 % ...and the end!
 S = [S ...
      '\\end{tabular}\n' ...
-     opts.caption ...
-     opts.label ...
      '\\end{table}'];
 
 % let sprintf do the rest
