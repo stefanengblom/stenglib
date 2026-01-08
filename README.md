@@ -3,20 +3,19 @@ Stefan Engblom's Matlab libraries - packages for daily use.
 
 ## License statement for stenglib
 
-You may download all of **stenglib** and
-use, modify and redistribute it in any way you like. A
-redistributor must fully attribute the authorship and make a good
-effort to cite the original location of the software. A researcher
-making *critical* use of the software in research is requested to 
-acknowledge this in publications related to the
-research. A company may use the code in software products provided
+You may download all of **stenglib** and use, modify and redistribute
+it in any way you like. A redistributor must fully attribute the
+authorship and make a good effort to cite the original location of the
+software. A researcher making *critical* use of the software in
+research is requested to acknowledge this in publications related to
+the research. A company may use the code in software products provided
 that the original location and the author is clearly cited.
 
-All code provided here comes with absolutely **no warranty**
-and **no support** whatsoever is given.
+All code provided here comes with absolutely **no warranty** and **no
+support** whatsoever is given.
 
-There are a lot of freeware available on the net. Do **not**
-download unless you agree to the above license.
+There are a lot of freeware available on the net. Do **not** download
+unless you agree to the above license.
 
 ## About stenglib
 
@@ -27,19 +26,19 @@ download unless you agree to the above license.
 * Utils
 * Misc
 
-For contact details, see [stenglib.org](http://www.stenglib.org).
-I welcome bug reports and comments. Please *do not* send support requests.
+For contact details, see [stenglib.org](http://www.stenglib.org).  I
+welcome bug reports and comments. Please *do not* send support
+requests.
 
 ## Tensor
 
-Originally, I made the **Tensor** package
-because I had the need to easily, efficiently and consistently
-manage multi-dimensional arrays in Matlab. *Examples:* given a
-matrix and a vector, how do you scale each row in the matrix by
-the vector? How can you multiply a 3-D array with a matrix? The
-package is useful to anyone who writes code for (pseudo-) spectral
-methods, FEM, or who uses multi-dimensional arrays or tensor
-notation a lot.
+Originally, I made the **Tensor** package because I had the need to
+easily, efficiently and consistently manage multi-dimensional arrays
+in Matlab. *Examples:* given a matrix and a vector, how do you scale
+each row in the matrix by the vector? How can you multiply a 3-D array
+with a matrix? The package is useful to anyone who writes code for
+(pseudo-) spectral methods, FEM, or who uses multi-dimensional arrays
+or tensor notation a lot.
 
 * **tndims** Number of dimensions.
   (Depend: 0, status: stable)
@@ -62,17 +61,16 @@ notation a lot.
   [tprod.m](Tensor/tprod.m)
   [tprod.c](Tensor/source/tprod.c)
   
-There is also a [make.m](Tensor/source/make.m) available.
-It will work on several, but not all, platforms.
+There is also a [make.m](Tensor/source/make.m) available.  It will
+work on several, but not all, platforms.
 
 ## Fast
 
-The routines in the **Fast** package exist
-because some things just take too much time in Matlab. *Examples:*
-replicate a data set in different dimensions (a.k.a. repmat),
-assemble a sparse matrix, or evaluate set operations. These
-routines should be of general interest to programmer in the
-scientific computing community.
+The routines in the **Fast** package exist because some things just
+take too much time in Matlab. *Examples:* replicate a data set in
+different dimensions (a.k.a. repmat), assemble a sparse matrix, or
+evaluate set operations. These routines should be of general interest
+to programmer in the scientific computing community.
 
 * **frepmat** Fast replication of array.
   (Depend: Tensor/{tndims,tsize} (weakly), status: stable)
@@ -113,13 +111,16 @@ in [PARALUTION](http://www.paralution.com).
   [powerseries.m](Fast/powerseries.m)
   [powerseries.c](Fast/source/powerseries.c)
 
-As before there is a [make.m](Fast/source/make.m) available which you will probably have to modify.
+As before there is a [make.m](Fast/source/make.m) available which you
+will probably have to modify.
 
 ## Scicomp
 
-In **Scicomp** I've assembled some solvers from different areas within scientific computing: two solvers for
-nonlinear problems and an implementation of the Nelder-Mead simplex algorithm. I have also put three routines 
-for Gaussian quadratures with respect to discrete measures in this package.
+In **Scicomp** I've assembled some solvers from different areas within
+scientific computing: two solvers for nonlinear problems and an
+implementation of the Nelder-Mead simplex algorithm. I have also put
+three routines for Gaussian quadratures with respect to discrete
+measures in this package.
 
 * **rtsafe** Scalar nonlinear solver.
   (Depend: 0, status: stable)
@@ -151,10 +152,10 @@ for Gaussian quadratures with respect to discrete measures in this package.
 
 ## Utils
 
-In the package **Utils** I've collected various
-routines for performing everyday tasks. Examples include
-generating LaTeX-arrays from matrices, .gif-animations, small
-perfect hash functions and removing files ending with a tilde (!).
+In the package **Utils** I've collected various routines for
+performing everyday tasks. Examples include generating LaTeX-arrays
+from matrices, .gif-animations, small perfect hash functions and
+removing files ending with a tilde (!).
 
 * **arr2latex** LaTeX-table from matrix.
 (Depend: Fast/frepmat, Utils/parseopts, status: stable)
@@ -218,10 +219,9 @@ perfect hash functions and removing files ending with a tilde (!).
 
 ## Misc
 
-I'll put amusing routines in **Misc**. For now,
-this humble package contains a sudoku solver and a short function
-which I personally believe is the most beautiful Matlab-code ever
-written.
+I'll put amusing routines in **Misc**. For now, this humble package
+contains a sudoku solver and a short function which I personally
+believe is the most beautiful Matlab-code ever written.
 
 * **sudsolve** Solve Sudoku puzzle.
 (Depend: 0, status: stable)
