@@ -15,6 +15,7 @@ function make(varargin)
 %
 %   silent       Boolean {false}     Turns information display on/off.
 
+% S. Engblom 2026-01-08 (mexmaca64, 25.2)
 % S. Engblom 2019-01-23 (mexmaci64, mexa64, 9.6)
 % S. Engblom 2016-11-23 (spreplace)
 % S. Engblom 2015-03-23 (mexa64, 8.4)
@@ -91,7 +92,7 @@ if opts.fsparseonly
     if ver(1) == '7'
       if ~strncmp(ver,'7.2',3) && ~strncmp(ver,'7.8',3) && ...
             ~strncmp(ver,'7.11',4) && ~strncmp(ver,'7.13',4)
-        warning(['Extension .' mexext [' tested with Matlab version(s) ' ...
+        warning(['Extension .' mx [' tested with Matlab version(s) ' ...
                             '7.2, 7.8, 7.11 and 7.13 only.']]);
       end
       if ~strncmp(ver,'7.11',4)
@@ -127,8 +128,8 @@ if opts.fsparseonly
             '-outdir',s,[s '/source/fsparse.c']);
       end
     else
-      if ~strncmp(ver,'8.4',3) && ~strncmp(version,'9.6',3)
-        warning(['Extension .' mexext ' tested with Matlab version(s) ' ...
+      if ~strncmp(ver,'8.4',3) && ~strncmp(ver,'9.6',3)
+        warning(['Extension .' mx ' tested with Matlab version(s) ' ...
                  '8.4 only.']);
       end
       
@@ -156,7 +157,7 @@ if opts.fsparseonly
     if ver(1) == '7'
       if ~strncmp(ver,'7.10',4) && ~strncmp(ver,'7.11',4) && ...
             ~strncmp(ver,'7.14',4)
-        warning(['Extension .' mexext ' tested with Matlab version(s) ' ...
+        warning(['Extension .' mx ' tested with Matlab version(s) ' ...
                  '7.10 and 7.11 only.']);
       end
       if opts.openmp
@@ -173,8 +174,8 @@ if opts.fsparseonly
       end
     else
       if opts.openmp, warning('Compilation of OpenMP not (yet?) supported for this platform.'); end 
-      if ~strncmp(ver,'8.4',3) && ~strncmp(version,'9.6',3)
-        warning(['Extension .' mexext ' tested with Matlab version(s) ' ...
+      if ~strncmp(ver,'8.4',3) && ~strncmp(ver,'9.6',3)
+        warning(['Extension .' mx ' tested with Matlab version(s) ' ...
 		 '8.4 and 9.6 only.']);
       end
       if opts.openmp
@@ -200,7 +201,7 @@ end
 if strcmp(mx,'mexglx')
   if opts.openmp, warning('OpenMP not implemented for this platform.'); end
   if ~strncmp(ver,'7.5',3) && ~strncmp(ver,'7.8',3)
-    warning(['Extension .' mexext [' tested with Matlab version(s) ' ...
+    warning(['Extension .' mx [' tested with Matlab version(s) ' ...
                         '7.5 and 7.8 only.']]);
   end
   mex(['CFLAGS=-fPIC -fno-omit-frame-pointer -std=c99 ' ...
@@ -228,7 +229,7 @@ elseif strcmp(mx,'mexa64')
   if ver(1) == '7'
     if ~strncmp(ver,'7.2',3) && ~strncmp(ver,'7.8',3) && ...
           ~strncmp(ver,'7.11',4) && ~strncmp(ver,'7.13',4)
-      warning(['Extension .' mexext [' tested with Matlab version(s) ' ...
+      warning(['Extension .' mx [' tested with Matlab version(s) ' ...
                           '7.2, 7.8, 7.11 and 7.13 only.']]);
     end
     if ~strncmp(ver,'7.11',4)
@@ -313,8 +314,8 @@ elseif strcmp(mx,'mexa64')
           '-outdir',s,[s '/source/spreplace.c']);
     end
   else
-    if ~strncmp(ver,'8.4',3) && ~strncmp(version,'9.6',3)
-      warning(['Extension .' mexext ' tested with Matlab version(s) ' ...
+    if ~strncmp(ver,'8.4',3) && ~strncmp(ver,'9.6',3)
+      warning(['Extension .' mx ' tested with Matlab version(s) ' ...
                '8.4 and 9.6 only.']);
     end
     
@@ -354,7 +355,7 @@ elseif strcmp(mx,'mexa64')
 elseif strcmp(mx,'mexmac')
   if opts.openmp, warning('OpenMP not implemented for this platform.'); end
   if ~strncmp(ver,'7.0',3)
-    warning(['Extension .' mexext ' tested with Matlab version(s) 7.0 only.']);
+    warning(['Extension .' mx ' tested with Matlab version(s) 7.0 only.']);
   end
   mex('CC=gcc -std=c99','-outdir',s,[s '/source/clenshaw.c']);
   mex('CC=gcc -std=c99','-outdir',s,[s '/source/fsetop.c']);
@@ -366,7 +367,7 @@ elseif strcmp(mx,'mexmac')
 elseif strcmp(mx,'mexmaci')
   if opts.openmp, warning('OpenMP not implemented for this platform.'); end
   if ~strncmp(ver,'7.8',3)
-    warning(['Extension .' mexext ' tested with Matlab version(s) 7.8 only.']);
+    warning(['Extension .' mx ' tested with Matlab version(s) 7.8 only.']);
   end
   mex('CC=gcc -std=c99 -fast','-outdir',s,[s '/source/clenshaw.c']);
   mex('CC=gcc -std=c99 -fast','-outdir',s,[s '/source/fsetop.c']);
@@ -379,7 +380,7 @@ elseif strcmp(mx,'mexmaci64')
   if ver(1) == '7'
     if ~strncmp(ver,'7.10',4) && ~strncmp(ver,'7.11',4) && ...
           ~strncmp(ver,'7.14',4)
-      warning(['Extension .' mexext ' tested with Matlab version(s) ' ...
+      warning(['Extension .' mx ' tested with Matlab version(s) ' ...
                '7.10 and 7.11 only.']);
     end
     mex('CC=gcc -std=c99 -fast','-outdir',s,[s '/source/clenshaw.c']);
@@ -403,8 +404,8 @@ elseif strcmp(mx,'mexmaci64')
 	'CC=gcc -std=c99 -fast','-outdir',s,[s '/source/spreplace.c']);
   else
     if opts.openmp, warning('Compilation of OpenMP not (yet?) supported for this platform.'); end 
-    if ~strncmp(ver,'8.4',3) && ~strncmp(version,'9.6',3)
-      warning(['Extension .' mexext ' tested with Matlab version(s) ' ...
+    if ~strncmp(ver,'8.4',3) && ~strncmp(ver,'9.6',3)
+      warning(['Extension .' mx ' tested with Matlab version(s) ' ...
                '8.4 and 9.6 only.']);
     end
     mex('CFLAGS=-Wno-parentheses -std=c99','-outdir',s,[s '/source/clenshaw.c']);
@@ -429,10 +430,26 @@ elseif strcmp(mx,'mexmaci64')
     mex('-largeArrayDims', ...
 	'CFLAGS= -std=c99','-outdir',s,[s '/source/spreplace.c']);
   end
+elseif strcmp(mx,'mexmaca64')
+  if opts.openmp, warning('OpenMP not implemented for this platform.'); end
+  if ~strncmp(ver,'23.2',4) && ~strncmp(ver,'25.2',4)
+    warning(['Extension .' mx ' tested with Matlab version(s) 23.2 ' ...
+             'and 25.2 only.']);
+  end
+  mex('CC=gcc -Wno-parentheses -std=c99','-outdir',s,[s '/source/clenshaw.c']);
+  mex('CC=gcc -std=c99','-outdir',s,[s '/source/fsetop.c']);
+  mex('-largeArrayDims', ...
+      'CC=gcc -std=c99','-outdir',s,[s '/source/mexfrepmat.c']);
+  mex('-largeArrayDims', ...
+      ['CC=gcc -Wno-logical-op-parentheses -std=c99 ',FSPARSEDEF],'-outdir',s,[s '/source/fsparse.c']);
+  mex('CC=gcc -std=c99','-outdir',s,[s '/source/powerseries.c']);
+  mex('CC=gcc -std=c99','-outdir',s,[s '/source/sppmul.c']);
+  mex('-largeArrayDims', ...
+      'CC=gcc -std=c99','-outdir',s,[s '/source/spreplace.c']);
 elseif strcmp(mx,'mexs64')
   if opts.openmp, warning('OpenMP not implemented for this platform.'); end
   if ~strncmp(ver,'7.7',3)
-    warning(['Extension .' mexext ' tested with Matlab version(s) 7.7 only.']);
+    warning(['Extension .' mx ' tested with Matlab version(s) 7.7 only.']);
   end
   mex('-outdir',s,[s '/source/clenshaw.c']);
   mex('-DNO_STDINT','-outdir',s,[s '/source/fsetop.c']);
