@@ -174,9 +174,9 @@ if opts.fsparseonly
       end
     else
       if opts.openmp, warning('Compilation of OpenMP not (yet?) supported for this platform.'); end 
-      if ~strncmp(ver,'8.4',3) && ~strncmp(ver,'9.6',3)
+      if ~strncmp(ver,'8.4',3) && ~strncmp(ver,'9.6',3) && ~strncmp(ver,'9.11',4)
         warning(['Extension .' mx ' tested with Matlab version(s) ' ...
-		 '8.4 and 9.6 only.']);
+                 '8.4, 9.6 and 9.11 only.']);
       end
       if opts.openmp
         % no harm in trying (await update of Clang?)
@@ -403,10 +403,10 @@ elseif strcmp(mx,'mexmaci64')
     mex('-largeArrayDims', ...
 	'CC=gcc -std=c99 -fast','-outdir',s,[s '/source/spreplace.c']);
   else
-    if opts.openmp, warning('Compilation of OpenMP not (yet?) supported for this platform.'); end 
-    if ~strncmp(ver,'8.4',3) && ~strncmp(ver,'9.6',3)
+    if opts.openmp, warning('Compilation of OpenMP not (yet?) supported for this platform.'); end
+    if ~strncmp(ver,'8.4',3) && ~strncmp(ver,'9.6',3) && ~strncmp(ver,'9.11',4)
       warning(['Extension .' mx ' tested with Matlab version(s) ' ...
-               '8.4 and 9.6 only.']);
+               '8.4, 9.6 and 9.11 only.']);
     end
     mex('CFLAGS=-Wno-parentheses -std=c99','-outdir',s,[s '/source/clenshaw.c']);
     mex('CFLAGS= -std=c99','-outdir',s,[s '/source/fsetop.c']);

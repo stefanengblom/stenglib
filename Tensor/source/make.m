@@ -136,9 +136,9 @@ elseif strcmp(mx,'mexmaci64')
         '-outdir',s,'-lmwblas', ...
         [s '/source/tprod.c']);
   else
-    if ~strncmp(ver,'8.4',3) && ~strncmp(ver,'9.6',3)
+    if ~strncmp(ver,'8.4',3) && ~strncmp(ver,'9.6',3) && ~strncmp(ver,'9.11',4)
       warning(['Extension .' mx ' tested with Matlab version(s) ' ...
-               '8.4 and 9.6 only.']);
+               '8.4, 9.6 and 9.11 only.']);
     end
     mex('CFLAGS= -std=c99','-outdir',s,[s '/source/tndims.c']);
     mex('CFLAGS=-Wno-logical-op-parentheses -std=c99','-outdir',s,[s '/source/tsize.c']);
