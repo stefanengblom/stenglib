@@ -213,10 +213,6 @@ removing files ending with a tilde (!).
 (Depend: Fast/fsparse, status: stable)
 [spblock.m](Utils/spblock.m)
 
-* **spym** Visualize magnitude of elements in matrix.
-(Depend: 0, status: this is a hack)
-[spym.m](Utils/spym.m)
-
 ## Misc
 
 I'll put amusing routines in **Misc**. For now, this humble package
