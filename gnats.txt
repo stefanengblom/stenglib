@@ -102,8 +102,6 @@ Fixes/Suggestions:
   N-dimensional array with dimensions matching that of the
   computational domain SZ (or singletons).
 
-* spym.m: Should make a coarse-grain version of a too large sparse matrix.
-
 * tprod.c/tsum.c: Optimize away some permutations! -Negative indices
   need only be sorted in the *same* order, not neccessarily in
   *increasing* order. -Use the "T"/"N"-option to dgemm() whenever
@@ -135,20 +133,6 @@ Minor bugs/Fixes:
   the routine), sometimes not.
 
 * tsum.c, clenshaw.c: Uses mxRealloc() in a possibly dangerous way.
-
-* spym.m: Works somewhat ugly for sparse matrices and for large dense
-  matrices. Some kind of sparsification should be supported.
-  Example:
-    % the following sums each 10-by-10 block in S without switching to
-    % a full matrix
-    S = sprand(100,100,0.15);
-    T = sum(reshape(S,10,[]),1);
-    T = sum(reshape(reshape(T,10,[]).',10,[]),1);
-    T = reshape(full(T),10,10);
-    % now one could use T as an average of S
-
-* frepmat.m: Depends on tsize and tndims so that Fast is dependent on
-  Tensor contrary to the guidelines.
 
 * tprod.c/tsum.c: Is too slow for certain products. Using the BLAS-3
   function dgemm() is not always the optimal solution.
